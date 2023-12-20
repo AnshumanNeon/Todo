@@ -71,6 +71,25 @@ void remove_todo()
 	}
 }
 
+void edit_done()
+{
+	int index, user_done;
+	printf("Enter the index of the todo whose 'Done' you want to change: ");
+	scanf("%d", &index);
+	printf("Enter the value of 'Done' you want to enter (0 for not done and 1 for done): ");
+	scanf("%d", &user_done);
+	if(index > n || index < 1)
+        {
+                printf("ERRORR, index given out of range!\n\n");
+                return;
+        }
+	else
+	{
+		list[index - 1].done = user_done;
+		printf("Successfully changed the 'Done' value fo the Todo!\n\n");
+	}
+}
+
 void take_input()
 {
 	int input = 0;
@@ -90,8 +109,12 @@ void take_input()
 			remove_todo();
 			take_input();
 			break;
+		case 4:
+			edit_done();
+			take_input();
+			break;
 		default:
-			printf("You pressed 4 or something else that I do not remember and I am assuming that you want to just get out cuz you cannot handle so many Todos, so I am letting you exit, alright?\n");
+			printf("You pressed 5 or something else that I do not remember and I am assuming that you want to just get out cuz you cannot handle so many Todos, so I am letting you exit, alright?\n");
 			break;
 	}
 }
@@ -99,7 +122,7 @@ void take_input()
 int main()
 {
 	printf("This is a todo app, here you will add todos. Try one of the following instructions:\n");
-	printf("1. print current todo list.\n2. add a new todo.\n3. remove a todo.\n4. Exit.\n");
+	printf("1. print current todo list.\n2. add a new todo.\n3. remove a todo.\n4. Change if Done.\n5. Exit.\n");
 
 	take_input();
 
